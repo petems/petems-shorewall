@@ -4,11 +4,12 @@
 #
 class shorewall::config {
 
-  file { '/etc/shorewall/zones':
+  file {'/etc/shorewall.conf':
     ensure  => file,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
+    content => template('shorewall/etc/shorewall/shorewall.conf.erb'),
   }
 
   file { '/etc/shorewall/interfaces':
@@ -16,14 +17,7 @@ class shorewall::config {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-
-  }
-
-  file { '/etc/shorewall/hosts':
-    ensure  => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+    content => template('shorewall/etc/shorewall/interfaces.erb'),
   }
 
   file { '/etc/shorewall/policy':
@@ -31,20 +25,7 @@ class shorewall::config {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-  }
-
-  file { '/etc/shorewall/routestopped':
-    ensure  => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-  }
-
-  file { '/etc/shorewall/common-rules':
-    ensure  => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+    content => template('shorewall/etc/shorewall/policy.erb'),
   }
 
   file { '/etc/shorewall/rules':
@@ -52,6 +33,15 @@ class shorewall::config {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
+    content => template('shorewall/etc/shorewall/rules.erb'),
+  }
+
+  file { '/etc/shorewall/zones':
+    ensure  => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    content => template('shorewall/etc/shorewall/zones.erb'),
   }
 
 }
