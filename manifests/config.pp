@@ -9,7 +9,7 @@ class shorewall::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('shorewall/etc/shorewall/shorewall.conf.erb'),
+    content => template('shorewall/etc/shorewall.conf.erb'),
   }
 
   file { '/etc/shorewall/interfaces':
