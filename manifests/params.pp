@@ -8,7 +8,7 @@ class shorewall::params {
     'RedHat', 'Amazon': {
       $package_name                = 'shorewall'
       $service_name                = 'shorewall'
-      $shorewall_conf_content      = template('shorewall/etc/shorewall.conf.erb')
+      $shorewall_conf_content      = template('shorewall/etc/shorewall/shorewall.conf.erb')
       $hosts_config_content        = template('shorewall/etc/shorewall/hosts.erb')
       $interfaces_config_content   = template('shorewall/etc/shorewall/interfaces.erb')
       $masq_config_content         = template('shorewall/etc/shorewall/masq.erb')

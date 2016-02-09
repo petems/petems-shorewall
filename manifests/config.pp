@@ -4,7 +4,7 @@
 #
 class shorewall::config {
 
-  file {'/etc/shorewall.conf':
+  file {'/etc/shorewall/shorewall.conf':
     ensure  => file,
     owner   => 'root',
     group   => 'root',
