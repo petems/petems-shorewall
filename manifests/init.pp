@@ -11,8 +11,6 @@
 #   e.g. "Specify one or more upstream ntp servers as an array."
 #
 class shorewall (
-  $package_name = $::shorewall::params::package_name,
-  $service_name = $::shorewall::params::service_name,
   $package_name                = $::shorewall::params::package_name,
   $service_name                = $::shorewall::params::service_name,
   $shorewall_conf_content      = $::shorewall::params::shorewall_conf_content,

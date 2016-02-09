@@ -5,10 +5,6 @@
 #
 class shorewall::params {
   case $::osfamily {
-    'Debian': {
-      $package_name = 'shorewall'
-      $service_name = 'shorewall'
-    }
     'RedHat', 'Amazon': {
       $package_name                = 'shorewall'
       $service_name                = 'shorewall'
