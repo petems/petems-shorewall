@@ -8,7 +8,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::shorewall_conf_content,
   }
 
@@ -16,7 +16,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::interfaces_config_content,
   }
 
@@ -24,7 +24,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::policy_config_content,
   }
 
@@ -32,7 +32,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::rules_config_content,
   }
 
@@ -40,7 +40,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::zones_config_content,
   }
 
@@ -48,7 +48,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::masq_config_content,
   }
 
@@ -56,7 +56,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::routestopped_config_content,
   }
 
@@ -64,7 +64,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::tcclasses_config_content,
   }
 
@@ -72,7 +72,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::tcdevices_config_content,
   }
 
@@ -80,7 +80,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::tcrules_config_content,
   }
 
@@ -88,7 +88,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::tunnels_config_content,
   }
 
@@ -96,7 +96,7 @@ class shorewall::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     content => $::shorewall::hosts_config_content,
   }
 
