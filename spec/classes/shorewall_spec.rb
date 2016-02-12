@@ -17,7 +17,7 @@ describe 'shorewall' do
           it { is_expected.to contain_class('shorewall::config') }
           it { is_expected.to contain_class('shorewall::service').that_subscribes_to('shorewall::config') }
 
-          it { is_expected.to contain_file('/etc/shorewall.conf').with_content(/Sample shorewall.conf/) }
+          it { is_expected.to contain_file('/etc/shorewall/shorewall.conf').with_content(/Sample shorewall.conf/) }
           it { is_expected.to contain_file('/etc/shorewall/hosts').with_content(/HOSTS/) }
           it { is_expected.to contain_file('/etc/shorewall/interfaces').with_content(/Sample Interfaces File/) }
           it { is_expected.to contain_file('/etc/shorewall/masq').with_content(/Sample Masq file/) }
