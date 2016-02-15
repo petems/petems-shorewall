@@ -1,60 +1,64 @@
+# Shorewall
+
 #### Table of Contents
 
 1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
+2. [Module Description](#module-description)
 3. [Setup - The basics of getting started with shorewall](#setup)
     * [What shorewall affects](#what-shorewall-affects)
-    * [Setup requirements](#setup-requirements)
     * [Beginning with shorewall](#beginning-with-shorewall)
 4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves. This is your 30 second elevator pitch for your module. Consider including OS/Puppet version it works with.       
+A basic module to install and configure [Shorewall](http://shorewall.net/).
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology the module integrates with and what that integration enables. This section should answer the questions: "What does this module *do*?" and "Why would I use it?"
+This module sets up Shorewall with the [default standalone config](http://shorewall.net/standalone.htm).
 
-If your module has a range of functionality (installation, configuration, management, etc.) this is the time to mention it.
+Configuration is done by passing a template to the various config elements, as the usecase I had to setup Shorewall was to implement pre-existing shorewall configs. If you'd prefer parameterised config, feel free to implement!
 
 ## Setup
 
 ### What shorewall affects
 
-* A list of files, packages, services, or operations that the module will alter, impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form. 
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled, etc.), mention it here. 
+* The Shorewall package and service
+* Config files located under '/etc/shorewall/'
 
 ### Beginning with shorewall
 
-The very basic steps needed for a user to get the module up and running. 
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you may wish to include an additional section here: Upgrading (For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+`include shorewall`
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing the fancy stuff with your module here. 
+If you're using the [roles and profiles pattern](https://puppetlabs.com/presentations/designing-puppet-rolesprofiles-pattern) then you could make a profile that looks something like this
 
-## Reference
-
-Here, list the classes, types, providers, facts, etc contained in your module. This section should include all of the under-the-hood workings of your module so people know what the module is touching on their system but don't need to mess with things. (We are working on automating this section!)
+```puppet
+class profiles::shorewall_server {
+  class {'::shorewall':
+  shorewall_conf_content      => template('profile/shorewall/shorewall_conf_content.erb'),
+  hosts_config_content        => template('profile/shorewall/hosts.erb'),
+  interfaces_config_content   => template('profile/shorewall/interfaces.erb'),
+  masq_config_content         => template('profile/shorewall/masq.erb'),
+  policy_config_content       => template('profile/shorewall/policy.erb'),
+  routestopped_config_content => template('profile/shorewall/routestopped.erb'),
+  rules_config_content        => template('profile/shorewall/rules.erb'),
+  tcclasses_config_content    => template('profile/shorewall/tcclasses.erb'),
+  tcdevices_config_content    => template('profile/shorewall/tcdevices.erb'),
+  tcrules_config_content      => template('profile/shorewall/tcrules.erb'),
+  tunnels_config_content      => template('profile/shorewall/tunnels.erb'),
+  zones_config_content        => template('profile/shorewall/zones.erb'),
+  }
+}
+```
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+My main usecase is RHEL, but should work on Debian based systems too!
 
-## Development
+##Development
 
-Since your module is awesome, other users will want to play with it. Let them know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You may also add any additional sections you feel are necessary or important to include here. Please use the `## ` header. 
+Follow the CONTRIBUTING.md guidelines! :)

@@ -1,14 +1,29 @@
-# Class: shorewall
-# ===========================
+# shorewall - Used for managing installation and configuration
+# of Shorewall
 #
-# Full description of class shorewall here.
+# @author Peter Souter and contributors
 #
-# Parameters
-# ----------
+# @example Default - This will by default ensure shorewall is installed
+#   with the default standalone config (See http://shorewall.net/standalone.htm).
+#   include ::shorewall
 #
-# * `sample parameter`
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# @example Override the shorewall.conf file with a profile template
+#   class {'::shorewall':
+#     shorewall_conf_content => template('profile/shorewall/shorewall_conf_content.erb'),
+#   }
+#
+# @param [String] shorewall_conf_content Content of shorewall.conf file
+# @param [String] hosts_config_content   Content of /etc/shorewall/hosts file
+# @param [String] interfaces_config_content Content of /etc/shorewall/interfaces file
+# @param [String] masq_config_content   Content of /etc/shorewall/masq file
+# @param [String] policy_config_content   Content of /etc/shorewall/policy file
+# @param [String] routestopped_config_content Content of /etc/shorewall/routestopped file
+# @param [String] rules_config_content   Content of /etc/shorewall/rules file
+# @param [String] tcclasses_config_content   Content of /etc/shorewall/tcclasses file
+# @param [String] tcdevices_config_content  Content of /etc/shorewall/tcdevices file
+# @param [String] tcrules_config_content   Content of /etc/shorewall/tcrules file
+# @param [String] tunnels_config_content    Content of /etc/shorewall/tunnels file
+# @param [String] zones_config_content    Content of /etc/shorewall/zones file
 #
 class shorewall (
   $package_name                = $::shorewall::params::package_name,
@@ -26,8 +41,6 @@ class shorewall (
   $tunnels_config_content      = $::shorewall::params::tunnels_config_content,
   $zones_config_content        = $::shorewall::params::zones_config_content,
 ) inherits ::shorewall::params {
-
-  # validate parameters here
 
   class { '::shorewall::install': } ->
   class { '::shorewall::config': } ~>
